@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Template for AIMS Rwanda Assignments         %%%              %%%
+%%% Author:   AIMS Rwanda tutors                             %%%   ###        %%%
+%%% Email: tutors2017-18@aims.ac.rw                               %%%   ###        %%%
+%%% Copyright: This template was designed to be used for    %%% #######      %%%
+%%% the assignments at AIMS Rwanda during the academic year %%%   ###        %%%
+%%% 2017-2018.                                              %%%   #########  %%%
+%%% You are free to alter any part of this document for     %%%   ###   ###  %%%
+%%% yourself and for distribution.                          %%%   ###   ###  %%%
+%%%                                                         %%%              %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%% Ensure that you do not write the questions before each of the solutions because it is not necessary. %%%%%% 
+
+\documentclass[12pt,a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{psfrag}
+
+%%%%%%%%%%%%%%%%%%%%% students data %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\student}{Stephen Kiilu}
+\newcommand{\course}{Regression with R}
+\newcommand{\assignment}{RWR1}
+
+%%%%%%%%%%%%%%%%%%% using theorem style %%%%%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{quest}{Question}[section]
+
+%%%%%%%%%%%%%%  Shortcut for usual set of numbers  %%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%% title page %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\textbf{AFRICAN INSTITUTE FOR MATHEMATICAL SCIENCES \\[0.5cm]
+(AIMS RWANDA, KIGALI)}
+\vspace{1.0cm}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%% assignment information %%%%%%%%%%%%%%%%
+\noindent
+\rule{17cm}{0.2cm}\\[0.3cm]
+Name: \student \hfill Assignment Number: \assignment\\[0.1cm]
+Course: \course \hfill Date: \today\\
+\rule{17cm}{0.05cm}
+\vspace{1.0cm}
+
+\section*{Question 1}
+From my analysis :\\
+Our data has three variable namely sex, age and Death rates per 10,000.\\
+The sample size is 62.
+The average age is 35 years with standard deviation from mean of 9 years. The median age is equivalent to mean .\\
+The average death rate per 10,000 is 12.65 and the middle death rate(median) is 10. The death rate per 10,000 has a spread of 8.95 from the mean .
+The correlation between age and death rate is $0.82$. This implies that there is a strong positive linear relationship between the two. This means that as age is increasing the death rate is increasing.\\
+The following graphics describes more about our analysis visually. 
+\begin{figure}[H]
+\includegraphics[width=9cm]{h}
+\centering
+\caption{side by side histogram of age and death rate}
+\end{figure}
+From the the histogram of age, we have mode i.e highest counts of age are occurring between age 20-25 and evenly distributed among intervals of 5. From the histogram of death rate, the maximum frequency of death rates is at interval 5-10 deaths rates per 10,000 and it decreasing in the other intervals of 5 from right to left.
+\begin{figure}[H]
+\includegraphics[width=8cm]{bb}
+\centering
+\caption{side by side box plot of age and death rate}
+\end{figure}
+From the box plot of age the median age is around 35 years and the spread from the median is fairly equal with no outliers in the data. From the boxplot of death rate, the median is around 10 deaths per 10,000 with the data more spread above the median. This indicates that we have more observation lying above our middle value.We have several outliers in our data, this may cause some question on how the data was collected. 
+\section*{Question 2}
+\begin{figure}[H]
+\includegraphics[width=8cm]{s}
+\centering
+\caption{side by side scatter diagram of death rates against age in females and males}
+\end{figure}
+From the scatter diagrams above, it clear that there is a positive relationship between age and death rates in both males and females. This shows that in both females and males, there is an increase in number of death rates with an increase in number of years.\\
+The coefficient of correlation of age and death rates in females and male is 0.92 and 0.88 respectively. This shows that there is a strong linear relationship between age and death rates in 10,000 in both females and males. We can interpret this to mean that an increase in number of years corresponds to increase in number of deaths in 10,000.
+\section*{Question 3}
+\begin{figure}[H]
+\includegraphics[width=6.35cm]{R}
+\centering
+\caption{Linear regression line}
+\end{figure}
+The diagram above shows the regression equation of age against death rates in females. The regression model is given by:\\
+$$ \hat{y}=\hat{\beta}_1x+\hat{\beta}_0.$$
+where $\hat{y}$ is the death rates per 10,000, $\hat{\beta}_1$ is the slope of the regression line, $x$ is the age and  $\hat{\beta}_0$ is the intercept of the regression line. Our regression model is therefore: $$ \hat{y}=0.7089x-15.4879.$$
+\section*{Question 4}
+We replace age 51 in our regression model$$ \hat{y}=0.7089x-15.4879.$$ and obtain the predicted death rate in females at aged 51 as 20.66. 
+\section*{Question 5}
+We are going to use $\mathrm{R^2}$, the coefficient of determination and mean standard error (MSE) to asses the quality of our model.
+From our data  $\mathrm{R^2}$ is 0.852 which means that the around $85 \%$ of total variation in the data is explained by our model. The $\mathrm{R^2}$ is large and is an indication that our model is good. But when we look at our MSE, which from our data is around 7, and for a good model we expect mean squares error to be minimum and close to zero. This cast doubts in the quality of our model. Basing on our MSE we can conclude that our model is not the best and can be improved. Some of ways to improve our model include; adding more data, normalize the data, check for collinearity problem and checking for outliers. 
+\end{document}

@@ -1,0 +1,185 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Template for AIMS Rwanda Assignments         %%%              %%%
+%%% Author:   AIMS Rwanda tutors                             %%%   ###        %%%
+%%% Email: tutors2017-18@aims.ac.rw                               %%%   ###        %%%
+%%% Copyright: This template was designed to be used for    %%% #######      %%%
+%%% the assignments at AIMS Rwanda during the academic year %%%   ###        %%%
+%%% 2017-2018.                                              %%%   #########  %%%
+%%% You are free to alter any part of this document for     %%%   ###   ###  %%%
+%%% yourself and for distribution.                          %%%   ###   ###  %%%
+%%%                                                         %%%              %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%% Ensure that you do not write the questions before each of the solutions because it is not necessary. %%%%%% 
+
+\documentclass[12pt,a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{psfrag}
+
+%%%%%%%%%%%%%%%%%%%%% students data %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\student}{Stephen Kiilu}
+\newcommand{\course}{Regression with R}
+\newcommand{\assignment}{SRR2}
+
+%%%%%%%%%%%%%%%%%%% using theorem style %%%%%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{quest}{Question}[section]
+
+%%%%%%%%%%%%%%  Shortcut for usual set of numbers  %%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%% title page %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\textbf{AFRICAN INSTITUTE FOR MATHEMATICAL SCIENCES \\[0.5cm]
+(AIMS RWANDA, KIGALI)}
+\vspace{1.0cm}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%% assignment information %%%%%%%%%%%%%%%%
+\noindent
+\rule{17cm}{0.2cm}\\[0.3cm]
+Name: \student \hfill Assignment Number: \assignment\\[0.1cm]
+Course: \course \hfill Date: \today\\
+\rule{17cm}{0.05cm}
+\vspace{1.0cm}
+\section{QUESTION 1}
+\textbf{Descriptive analysis}\\
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|rlllll|}
+%  \hline
+% & Gender & City\_Category & Stay\_In\_Current\_City\_Years &    Age\_num &    Purchase \\ 
+%  \hline
+% & F: 39374   & A:42368   & Min.   :0.000   & Min.   :10.00   & Min.   :   12   \\ 
+%   & M:119626   & B:67102   & 1st Qu.:1.000   & 1st Qu.:27.00   & 1st Qu.: 5828   \\ 
+%  &  & C:49530   & Median :2.000   & Median :33.00   & Median : 8044   \\ 
+%   &  &  & Mean   :1.856   & Mean   :34.81   & Mean   : 9270   \\ 
+%   &  &  & 3rd Qu.:3.000   & 3rd Qu.:42.00   & 3rd Qu.:12059   \\ 
+%   &  &  & Max.   :4.000   & Max.   :75.00   & Max.   :23961   \\ 
+%   \hline
+%\end{tabular}
+%\caption{summary statistics}
+%\end{table}
+%From my analysis all customers were 159,000 ,with most of most being males at around 75\% and female at 25\%.The number of male customers was 119,626 as compared to 39374 female customers. In terms of customers and their city category, most of customers were from city B, which had 67,102 customers, followed by city B and C with 49,530 and 42, 368 respectively. The minimum age of the customers was 10 years and the oldest customer being 75 years of age. On average most of the customers are aged at around 35 years, and the middle age was 33 years. It is also clear from the data that on average the customers have stayed in their current cities for close to 2 years. The minimum purchase amount among all customers was 12 units, with maximum purchase amount of 23,961. The average purchase amount among all customers was 9240, and the middle purchase amount was 8044 units. i t is also worth noting that 25\% of the customers had purchase amount of 5828, with 75\% of the customers having a purchase amount of 12,059 units. To describe my data more, I am going to consider the following graphs.
+\begin{figure}[H]
+\includegraphics[width=13cm]{pl}
+\centering
+\caption{Descriptive analysis}
+\end{figure}
+Most of the customers are males, who are approximately three times the number of female customers.
+From the boxplot of purchase amount we see we have some extreme purchase, which means some customers we spending abnormally more as compared to other customers. It also clear that most of customers are spending above middle purchase amount.\\
+We can see from barplot of age that most of the customers are  aged between 28 and 34 years. Most of the customers have stayed in their current city for one year, the city from which most customers are drawn is B. We can also state that most of the customers are unmarried.
+\section{QUESTION 2}
+We are going to built a regression model using backward elimination method. We first built a model with all variables and get this summary output.
+\begin{table}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & 8275.0003 & 51.3159 & 161.26 & 0.0000& $^{***}$  \\ 
+  cityB & 232.8961 & 31.1291 & 7.48 & 0.0000& $^{***}$ \\ 
+  cityC & 816.1364 & 33.3939 & 24.44 & 0.0000 & $^{***}$  \\ 
+  GenderM & 707.5733 & 29.0924 & 24.32 & 0.0000& $^{***}$  \\ 
+  Maritals & -44.7599 & 26.7599 & -1.67 & 0.0944 \\ 
+  Age & 3.8340 & 1.1270 & 3.40 & 0.0007& $^{***}$  \\ 
+  stay & -2.4060 & 9.7449 & -0.25 & 0.8050 \\ 
+   \hline
+\end{tabular}
+\caption{model 1}
+\end{table}
+From model 1, all variables with exception of stay and marital status have a p-value $<$0.001. The variables with p-value $>$0.05, are insignficant to our model, they do not add any additional information to our model. Consequently we are going to eliminate marital status and stay in current city from our model and built new model.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & 8271.6583 & 48.2288 & 171.51 & 0.0000& $^{***}$ \\ 
+  cityB & 232.3207 & 31.1195 & 7.47 & 0.0000& $^{***}$ \\ 
+  cityC & 815.7573 & 33.3829 & 24.44 & 0.0000& $^{***}$ \\ 
+  GenderM & 708.0186 & 29.0878 & 24.34 & 0.0000 & $^{***}$\\ 
+  Age & 3.2739 & 1.0757 & 3.04 & 0.0023 & $^{**}$\\ 
+   \hline
+\end{tabular}
+\caption{final model}
+\end{table}
+We carefully examine the p-value against all our explanatory variables. We notice that all variables in our model have a p-value $<$0.05. This means all our explanatory variables are very significant to our model and conclude that we have our final model.
+\section*{QUESTION 3}
+We have built a multiple regression model with age, city category and gender as our explanatory variables. Our regression model is $$ \hat{y}=8271.65+232.32\text{$x_1$}+815.75\text{$x_2$}
++708.01\text{$x_3$}+3.28\text{$x_4$}.$$
+Where 8271.65 is the intercept of our model, $ \hat{y}$ is the predicted purchase amount, $x_1$ is city category B, $x_2$ is city category C, $x_3$ Males and $x_3$ is age. The corresponding standard errors for city B, city C, Males and age are 31.12, 33.39, 29.09 and 1.08, which are relatively low as compared to the estimates.\\
+When all other explanatory variables are held constant, a unit increase in age increases the expected purchase amount by 3.28 units, the purchase amount in male customers is 708.01 higher than in female customers,and customers from city category B and C have a higher purchase amount than customers from city category A by 232.32 and 815.75 units respectively.
+\section*{QUESTION 4}
+We are going to assume that, the independent variables are non-stochastic (fixed predictors), the regression parameters are constant and carry out residual analysis to check for assumptions of;linear association, homoskedasticity, normality and outliers.
+\begin{figure}[H]
+\includegraphics[width=14cm]{as}
+\centering
+\caption{Residue analysis}
+\end{figure}
+\begin{enumerate}
+\item[]\textbf{Linear association} - The first plot from left is a plot of residuals against fitted values, it shows some gaps in the fitted values which indicates that the residuals are not random. The assumption of linear association does not hold.
+\item[]\textbf{Normality}- for the assumption of normality to be true, the residuals should follow a straight line, from our second plot many data points deviate away from a straight line which show that the residues are not normally distributed, consequently the assumption of normality fails.
+\item[]\textbf{Homoskedasticity} - for this assumption, we expect that the residuals to have a constant variance, but according to our third plot, there is increasing spread of the residuals from left to right with some gaps, and as a result the assumption of homoskedasticity is violated.
+\item[]\textbf{Check for outliers} - we observe from our fourth plot that are significant outliers in our data. The outliers need to be investigated and a decision reached whether to remove or retail them in our data. 
+\end{enumerate}
+\section*{QUESTION 5}
+From this model, city category C is a very important driver towards maximization of the company's sales. The company should consider employing more strategies so that it continues enjoying more purchase from customers in this city category. The company is doing poorly in terms of purchase from female customers, there is a need to come up with products which attract more female customers for the company to realize increase in its sales.
+\section*{QUESTION 6}
+Some possible ways of improving our model include;
+\begin{enumerate}
+\item[-]Adding appropriate variables
+\item[-]Checking for outliers
+\item[-]Data transformation e.g by taking natural log of the purchase amount.
+\end{enumerate} 
+\section*{QUESTION 7}
+We are going to use ANOVA  to compare the two models, model 1 and model 2.
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrrrrrrr}
+  \hline
+ & Res.Df & RSS & Df & Sum of Sq & F & Pr($>$F) \\ 
+  \hline
+Model 1 & 158997 & 4001520005780.23 &  &  &  &  \\ 
+  Model 2 & 158995 & 3984905477192.59 & 2 & 16614528587.64 & 331.45 
+  & 0.0000& $^{***}$ \\ 
+   \hline
+\end{tabular}
+\end{table} The model built on gender and age is model 1 and my final model is model 2. The p-value of model 2 is very significant, which means that my final model is better. The difference between the two models is inclusion of city category variable in my model, this shows that the city category variable adds additional information to the model. This means that the amount of total variation explain by my final model is higher compared to amount variation explain by model built on age and gender only.\\
+\end{document}
+
+
